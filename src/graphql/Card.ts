@@ -1,4 +1,4 @@
-import { extendType, nonNull, objectType, intArg, stringArg, idArg } from 'nexus';
+import { extendType, nonNull, objectType, intArg, stringArg  } from 'nexus';
 
 export const Card = objectType({
   name: "Card",
@@ -7,6 +7,20 @@ export const Card = objectType({
     t.nonNull.string("question");
     t.nonNull.string('description');
     t.nonNull.string("answer");
+  }
+})
+
+// Query
+
+export const CardQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.nonNull.list.nonNull.field("allCards", {
+      type: 'Card',
+      resolve(parent, args, context, info) {
+        return context.prisma.card.findMany()
+      }
+    })
   }
 })
 
@@ -98,18 +112,6 @@ export const cardMutation = extendType({
   }
 })
 
-// Query
 
-export const CardQuery = extendType({
-  type: 'Query',
-  definition(t) {
-    t.nonNull.list.nonNull.field("allCards", {
-      type: 'Card',
-      resolve(parent, args, context, info) {
-        return context.prisma.card.findMany()
-      }
-    })
-  }
-})
 
 

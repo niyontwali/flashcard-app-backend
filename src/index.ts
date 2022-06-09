@@ -5,10 +5,11 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import { context } from './context'
-import { schema } from './schema';
+import { schema } from './schema/schema';
 
 export const server = new ApolloServer({
   schema,
+  introspection: true, 
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
   context,
 })
