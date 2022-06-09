@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc",
-    "postinstall": "npm run tsc",
-    "start": "node dist/src/index.js",
+    "build": "tsc",
+    "postinstall": "npm run build",
+    "start": "npm run migrate && node dist/src/index.js",
     "dev": "ts-node-dev --transpile-only --no-notify --exit-child src/index.ts",
     "generate": "ts-node --transpile-only src/schema.ts",
     "migrate": "npx prisma generate",
