@@ -6,10 +6,11 @@
   "scripts": {
     "build": "tsc",
     "postinstall": "npm run build",
-    "start": "npm run migrate && node dist/src/index.js",
+    "start": "npm run migrate-prod && node dist/src/index.js",
     "dev": "ts-node-dev --transpile-only --no-notify --exit-child src/index.ts",
     "generate": "ts-node --transpile-only src/schema.ts",
-    "migrate": "npx prisma generate",
+    "migrate-prod": "npx prisma migrate deploy",
+    "migrate-dev": "npx prisma generate",
     "reset": "npx prisma migrate reset"
   },
   "keywords": [],
