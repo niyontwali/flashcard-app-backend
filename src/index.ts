@@ -1,4 +1,5 @@
 import { ApolloServer } from 'apollo-server';
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -8,7 +9,8 @@ import { context } from './context'
 import { schema } from './schema';
 export const server = new ApolloServer({
   schema,
-  context
+  context,
+  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 })
 
 const port = process.env.PORT || 5000;
