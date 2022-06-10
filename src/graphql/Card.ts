@@ -1,4 +1,4 @@
-import { extendType, nonNull, objectType, intArg, stringArg  } from 'nexus';
+import { extendType, nonNull, objectType, intArg, stringArg, idArg  } from 'nexus';
 
 export const Card = objectType({
   name: "Card",
@@ -20,7 +20,21 @@ export const CardQuery = extendType({
       resolve(parent, args, context, info) {
         return context.prisma.card.findMany()
       }
-    })
+    }),
+     // find one card
+   t.field('oneCard', {
+    type: "Card",
+    args: {
+      id: nonNull(idArg())
+    },
+    resolve (parent, args, context) {
+      return context.prisma.card.findUnique({
+        where: {
+          id: parseInt(args.id)
+        },
+      })
+    }
+  })
   }
 })
 
@@ -48,22 +62,6 @@ export const cardMutation = extendType({
           }
         });
         return newCard;
-      }
-    })
-
-    // find one card
-    t.field('findOneCard', {
-      type: "Card",
-      args: {
-        id: nonNull(intArg())
-      },
-      resolve (parent, args, context) {
-        const { id } = args;
-        return context.prisma.card.findUnique({
-          where: {
-            id
-          },
-        })
       }
     })
 
