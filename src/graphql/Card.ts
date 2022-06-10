@@ -3,7 +3,7 @@ import { extendType, nonNull, objectType, intArg, stringArg, idArg  } from 'nexu
 export const Card = objectType({
   name: "Card",
   definition(t) {
-    t.nonNull.int("id");
+    t.nonNull.id("id");
     t.nonNull.string("question");
     t.nonNull.string('description');
     t.nonNull.string("answer");
@@ -69,7 +69,7 @@ export const cardMutation = extendType({
     t.nonNull.field('updateCard', {
       type: "Card",
       args: {
-        id: nonNull(intArg()),
+        id: nonNull(idArg()),
         question: nonNull(stringArg()),
         description: nonNull(stringArg()),
         answer: nonNull(stringArg())

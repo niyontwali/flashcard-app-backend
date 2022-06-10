@@ -31,7 +31,7 @@ export interface NexusGenObjects {
   Card: { // root type
     answer: string; // String!
     description: string; // String!
-    id: number; // Int!
+    id: string; // ID!
     question: string; // String!
   }
   Mutation: {};
@@ -52,7 +52,7 @@ export interface NexusGenFieldTypes {
   Card: { // field return type
     answer: string; // String!
     description: string; // String!
-    id: number; // Int!
+    id: string; // ID!
     question: string; // String!
   }
   Mutation: { // field return type
@@ -70,7 +70,7 @@ export interface NexusGenFieldTypeNames {
   Card: { // field return type name
     answer: 'String'
     description: 'String'
-    id: 'Int'
+    id: 'ID'
     question: 'String'
   }
   Mutation: { // field return type name
@@ -97,7 +97,7 @@ export interface NexusGenArgTypes {
     updateCard: { // args
       answer: string; // String!
       description: string; // String!
-      id: number; // Int!
+      id: string; // ID!
       question: string; // String!
     }
   }

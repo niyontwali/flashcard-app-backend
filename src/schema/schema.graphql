@@ -5,14 +5,14 @@
 type Card {
   answer: String!
   description: String!
-  id: Int!
+  id: ID!
   question: String!
 }
 
 type Mutation {
   createCard(answer: String!, description: String!, question: String!): Card!
   deleteCard(id: Int!): Card!
-  updateCard(answer: String!, description: String!, id: Int!, question: String!): Card!
+  updateCard(answer: String!, description: String!, id: ID!, question: String!): Card!
 }
 
 type Query {
