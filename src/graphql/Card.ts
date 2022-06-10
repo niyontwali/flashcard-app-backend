@@ -1,4 +1,4 @@
-import { extendType, nonNull, objectType, intArg, stringArg, idArg  } from 'nexus';
+import { extendType, nonNull, objectType, intArg, stringArg  } from 'nexus';
 
 export const Card = objectType({
   name: "Card",
