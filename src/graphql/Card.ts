@@ -3,7 +3,7 @@ import { extendType, nonNull, objectType, intArg, stringArg, idArg  } from 'nexu
 export const Card = objectType({
   name: "Card",
   definition(t) {
-    t.nonNull.id("id");
+    t.nonNull.int("id");
     t.nonNull.string("question");
     t.nonNull.string('description');
     t.nonNull.string("answer");
@@ -25,12 +25,12 @@ export const CardQuery = extendType({
    t.field('oneCard', {
     type: "Card",
     args: {
-      id: nonNull(idArg())
+      id: nonNull(intArg())
     },
     resolve (parent, args, context) {
       return context.prisma.card.findUnique({
         where: {
-          id: parseInt(args.id)
+          id: args.id
         },
       })
     }
@@ -69,7 +69,7 @@ export const cardMutation = extendType({
     t.nonNull.field('updateCard', {
       type: "Card",
       args: {
-        id: nonNull(idArg()),
+        id: nonNull(intArg()),
         question: nonNull(stringArg()),
         description: nonNull(stringArg()),
         answer: nonNull(stringArg())
